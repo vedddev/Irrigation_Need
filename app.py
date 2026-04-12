@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import os
 import pandas as pd
-import pickle
+import joblib
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Load model
+# Load compressed model
 model_path = os.path.join(BASE_DIR, "best_model_pipeline.pkl")
-model = pickle.load(open(model_path, "rb"))
+model = joblib.load(model_path)
 
 # Columns
 expected_cols = [
@@ -29,37 +29,30 @@ num_cols = [
     'Previous_Irrigation_mm'
 ]
 
-#  HOME PAGE
 @app.route('/')
 def home():
     return render_template('home.html')
 
-#  PREDICTION PAGE (form page)
 @app.route('/predict')
 def predict_page():
     return render_template('index.html')
 
-#  MODEL PREDICTION
 @app.route('/predictdata', methods=['POST'])
 def predict_datapoint():
     try:
         data = request.form.to_dict()
         df = pd.DataFrame([data])
 
-        # Convert numeric columns
         for col in num_cols:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')
 
-        # Add missing columns
         for col in expected_cols:
             if col not in df.columns:
                 df[col] = 0
 
-        # Correct order
         df = df[expected_cols]
 
-        # Predict
         prediction = model.predict(df)[0]
 
         mapping = {0: "Low", 1: "High", 2: "Medium"}
@@ -69,7 +62,6 @@ def predict_datapoint():
 
     except Exception as e:
         return render_template("index.html", result=f"Error: {str(e)}")
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
