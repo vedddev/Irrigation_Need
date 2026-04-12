@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Irrigation Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #065f46;
+        }
+
+        h3 {
+            color: #047857;
+            margin-top: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #059669;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ecfdf5;
+            border-left: 5px solid #10b981;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #065f46;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="/" style="
+    display:inline-block;
+    margin-bottom:15px;
+    text-decoration:none;
+    color:#065f46;
+    font-weight:600;
+">
+    ⬅ Back to Home
+</a>
+
+
+<h2>🌱 Irrigation Need Prediction</h2>
+
+<form action="/predictdata" method="post">
+
+<h3>Soil Info</h3>
+<input name="Soil_pH" placeholder="Soil pH">
+<input name="Soil_Moisture" placeholder="Soil Moisture">
+<input name="Organic_Carbon" placeholder="Organic Carbon">
+
+<select name="Soil_Type">
+  <option value="">Select Soil Type</option>
+  <option>Sandy</option>
+  <option>Clay</option>
+  <option>Silt</option>
+  <option>Loamy</option>
+</select>
+
+<h3>Weather</h3>
+<input name="Temperature_C" placeholder="Temperature (°C)">
+<input name="Humidity" placeholder="Humidity (%)">
+<input name="Rainfall_mm" placeholder="Rainfall (mm)">
+<input name="Wind_Speed_kmh" placeholder="Wind Speed (km/h)">
+<input name="Sunlight_Hours" placeholder="Sunlight Hours">
+
+<h3>Crop</h3>
+<input name="Crop_Type" placeholder="Crop Type">
+<input name="Crop_Growth_Stage" placeholder="Growth Stage">
+
+<h3>Other</h3>
+<input name="Field_Area_hectare" placeholder="Field Area (hectare)">
+<input name="Previous_Irrigation_mm" placeholder="Previous Irrigation (mm)">
+
+<select name="Season">
+  <option value="">Select Season</option>
+  <option>Zaid</option>
+  <option>Kharif</option>
+  <option>Rabi</option>
+</select>
+
+
+<select name="Water_Source">
+  <option value="">Water Source</option>
+  <option>River</option>
+  <option>Groundwater</option>
+  <option>Rainwater</option>
+  <option>Reservoir</option>
+
+</select>
+
+<select name="Irrigation_Type">
+  <option value="">Irrigation Type</option>
+  <option>Drip</option>
+  <option>Sprinkler</option>
+  <option>Flood</option>
+  <option>Canal</option>
+
+</select>
+
+<select name="Mulching_Used">
+  <option value="">Mulching Used</option>
+  <option>Yes</option>
+  <option>No</option>
+</select>
+
+<select name="Region">
+  <option value="">Region</option>
+  <option>North</option>
+  <option>South</option>
+  <option>East</option>
+  <option>West</option>
+</select>
+
+<button type="submit">Predict</button>
+
+</form>
+
+{% if result %}
+<div class="result">
+    {{ result }}
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
