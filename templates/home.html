@@ -1,55 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Irrigation App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Irrigation System</title>
     <style>
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            font-family: Arial;
-            background: linear-gradient(135deg, #065f46, #10b981);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #064e3b, #10b981);
             color: white;
-            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 35%);
         }
 
         .container {
-            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            font-size: 14px;
+            margin-bottom: 18px;
         }
 
         h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: 52px;
+            line-height: 1.15;
+            margin: 0 0 18px;
         }
 
         p {
-            font-size: 18px;
-            opacity: 0.9;
+            font-size: 20px;
+            line-height: 1.7;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto 30px;
         }
 
         .btn {
-            margin-top: 30px;
-            padding: 14px 28px;
+            display: inline-block;
+            padding: 16px 34px;
+            border-radius: 14px;
             background: white;
             color: #065f46;
-            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
-            display: inline-block;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
         }
 
         .btn:hover {
+            transform: translateY(-3px) scale(1.02);
             background: #ecfdf5;
+        }
+
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            p { font-size: 17px; }
+            .features { grid-template-columns: 1fr; }
+            .container { padding: 35px 20px; }
+            .btn { width: 100%; max-width: 280px; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 28px; }
+            p { font-size: 15px; }
+            .badge { font-size: 12px; }
         }
     </style>
 </head>
-
 <body>
+    <section class="hero">
+        <div class="container">
+            <div class="badge">🌾 AI Powered Farming Assistant</div>
+            <h1>🌱 Smart Irrigation Need Prediction</h1>
+            <p>
+                Just buid model for imporve farming
+            </p>
+            <a href="/predict" class="btn">🚀 Start Prediction</a>
 
-<div class="container">
-    <h1>🌱 Smart Irrigation System</h1>
-    <p>Predict irrigation needs </p>
-
-    <a href="/predict" class="btn">Start Prediction</a>
-</div>
-
+            <div class="features">
+                <div class="card">
+                    <h3>💧 Water Optimization</h3>
+                    <p>Reduce water waste with intelligent irrigation recommendations.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 ML Predictions</h3>
+                    <p>Powered by Random Forest with soil and climate insights.</p>
+                </div>
+                <div class="card">
+                    <h3>📱 Smart farming</h3>
+                    <p>Modern era we do smart farming not aura farming</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
