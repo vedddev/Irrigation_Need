@@ -1,158 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Irrigation System</title>
-    <style>
-        * { box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriSense | Smart Irrigation</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #064e3b, #10b981);
-            color: white;
-            overflow-x: hidden;
-        }
+  <!-- Professional icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 20px;
-            position: relative;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 35%);
-        }
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 850px;
-            text-align: center;
-            padding: 50px 30px;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-        }
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 8%;
+      background: white;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.15);
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #065f46;
+    }
 
-        h1 {
-            font-size: 52px;
-            line-height: 1.15;
-            margin: 0 0 18px;
-        }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
 
-        p {
-            font-size: 20px;
-            line-height: 1.7;
-            opacity: 0.95;
-            max-width: 650px;
-            margin: 0 auto 30px;
-        }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 16px 34px;
-            border-radius: 14px;
-            background: white;
-            color: #065f46;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-        }
+    .nav-links a i {
+      font-size: 15px;
+      color: #065f46;
+    }
 
-        .btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            background: #ecfdf5;
-        }
+    .nav-links a:hover {
+      color: #065f46;
+    }
 
-        .features {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 8%;
+      gap: 60px;
+    }
 
-        .card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 18px;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.12);
-        }
+    .hero-text h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
 
-        .card h3 {
-            margin: 0 0 8px;
-            font-size: 18px;
-        }
+    .hero-text p {
+      font-size: 20px;
+      line-height: 1.8;
+      color: #475569;
+      margin-bottom: 30px;
+      max-width: 650px;
+    }
 
-        .card p {
-            font-size: 14px;
-            margin: 0;
-            line-height: 1.5;
-        }
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            p { font-size: 17px; }
-            .features { grid-template-columns: 1fr; }
-            .container { padding: 35px 20px; }
-            .btn { width: 100%; max-width: 280px; }
-        }
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 28px; }
-            p { font-size: 15px; }
-            .badge { font-size: 12px; }
-        }
-    </style>
+    .primary {
+      background: #065f46;
+      color: white;
+    }
+
+    .secondary {
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      background: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Hero image */
+    .hero-image {
+      width: 100%;
+      height: 520px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Features */
+    .features {
+      padding: 100px 8%;
+      background: white;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 60px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta {
+      margin: 100px 8%;
+      background: linear-gradient(135deg, #065f46, #10b981);
+      border-radius: 30px;
+      padding: 70px;
+      text-align: center;
+      color: white;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        height: 300px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="container">
-            <div class="badge">🌾 AI Powered Farming Assistant</div>
-            <h1>🌱 Smart Irrigation Need Prediction</h1>
-            <p>
-                Just buid model for imporve farming
-            </p>
-            <a href="/predict" class="btn">🚀 Start Prediction</a>
 
-            <div class="features">
-                <div class="card">
-                    <h3>💧 Water Optimization</h3>
-                    <p>Reduce water waste with intelligent irrigation recommendations.</p>
-                </div>
-                <div class="card">
-                    <h3>📊 ML Predictions</h3>
-                    <p>Powered by Random Forest with soil and climate insights.</p>
-                </div>
-                <div class="card">
-                    <h3>📱 Smart farming</h3>
-                    <p>Modern era we do smart farming not aura farming</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">AgriSense</div>
+
+    <div class="nav-links">
+      <a href="#">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="#features">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Features</span>
+      </a>
+
+      <a href="/predict">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Prediction</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Smarter Irrigation Starts With Better Predictions</h1>
+      <p>
+        Leverage machine learning and environmental analytics to optimize irrigation,
+        save water, and improve crop yield with precision agriculture.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/predict" class="btn primary">Start Prediction</a>
+        <a href="#features" class="btn secondary">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='bg.jpg') }}" alt="Smart Irrigation Farm">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <h2 class="section-title">Built for Modern Agriculture</h2>
+    <div class="feature-grid">
+      <div class="card">
+        <h3>Smart Water Usage</h3>
+        <p>Reduce unnecessary irrigation with intelligent recommendations.</p>
+      </div>
+
+      <div class="card">
+        <h3>AI Powered Forecasting</h3>
+        <p>Advanced ML models predict water needs using real farm conditions.</p>
+      </div>
+
+      <div class="card">
+        <h3>Higher Crop Yield</h3>
+        <p>Optimize soil moisture and improve productivity across seasons.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Start Optimizing Your Farm Today</h2>
+    <p>Use intelligent irrigation predictions to maximize efficiency and sustainability.</p>
+    <a href="/predict" class="btn primary">Launch Prediction</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 AgriSense. Precision agriculture powered by AI.
+  </footer>
+
 </body>
 </html>

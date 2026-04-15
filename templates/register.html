@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriSense | Create Account</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", "Segoe UI", sans-serif; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 460px;
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: #065f46;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1 { text-align: center; font-size: 28px; margin-bottom: 8px; }
+    .subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .input-wrap { position: relative; }
+    .input-wrap i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+    }
+    .input-wrap input {
+      width: 100%;
+      padding: 14px 14px 14px 42px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+    }
+    .input-wrap input:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+    }
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      background: #065f46;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+      margin-top: 8px;
+    }
+    .btn:hover { transform: translateY(-2px); background: #047857; }
+    .signin {
+      margin-top: 22px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+    .signin a { color: #065f46; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <form class="card" action="/register" method="POST">
+    <div class="brand"><i class="fa-solid fa-leaf"></i> AgriSense</div>
+    <h1>Create Account</h1>
+    <p class="subtitle">Join AgriSense to manage irrigation smarter with AI-powered insights.</p>
+
+    <div class="field">
+      <label>Full Name</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" name="name" placeholder="Enter your full name" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="email" placeholder="Enter your email" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" name="password" placeholder="Create a password" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Confirm Password</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-shield-halved"></i>
+        <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn">Create Account</button>
+
+    <div class="signin">
+      Already have an account? <a href="/login">Sign in</a>
+    </div>
+  </form>
+</body>
+</html>
