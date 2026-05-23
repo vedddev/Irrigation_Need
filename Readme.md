@@ -7,7 +7,7 @@ https://irrigation-need-4.onrender.com
 
 ---
 
-## Features
+## Features 
 
 - Predicts irrigation need as:
   - Low
