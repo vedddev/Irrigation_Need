@@ -8,7 +8,6 @@ https://irrigation-need-4.onrender.com
 ---
 
 ## Features 
-
 - Predicts irrigation need as:
   - Low
   - Medium
