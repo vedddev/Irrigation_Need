@@ -4,3 +4,4 @@ test.csv
 catboost_info/
 __pycache__/
 .ipynb_checkpoints/myvenv/
+myvenv/
